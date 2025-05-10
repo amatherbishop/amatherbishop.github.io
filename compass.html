@@ -61,6 +61,7 @@
       .start-btn {
         margin-bottom: auto;
       }
+
     </style>
   </head>
   <body>
@@ -71,6 +72,7 @@
     </div>
     <button class="start-btn">Start compass</button>
     <div id='debug'>Hello world!</div>
+    <img src="owl.png"/>
   </body>
   <script>
     const compassCircle = document.querySelector(".compass-circle");
@@ -131,8 +133,8 @@
     function calcDegreeToPoint(latitude, longitude) {
       // Qibla geolocation
       const point = {
-        lat: 40.77398,
-        lng: -73.97094
+        lat: 21.422487,
+        lng: 39.826206,
       };
 
       const phiK = (point.lat * Math.PI) / 180.0;
