@@ -84,6 +84,7 @@
       navigator.userAgent.match(/AppleWebKit/);
 
     function init() {
+      document.getElementById("debug_pos").innerHTML = "in init"
       startBtn.addEventListener("click", startCompass);
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(locationHandler);
