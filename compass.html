@@ -86,15 +86,44 @@
     function init() {
       document.getElementById("debug_pos").innerHTML = "in init"
       startBtn.addEventListener("click", startCompass);
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(locationHandler);
-      } else {
-        document.getElementById("debug_pos").innerHTML = "GEOLOCATION NOT AVAILABLE"
-      }
-
+      
       if (!isIOS) {
         window.addEventListener("deviceorientationabsolute", handler, true);
       }
+
+        // does browser have geo services enabled
+      navigator.permissions.query({name:'geolocation'})
+        .then((result) => {
+          
+          if (result.state === 'granted') {// you are good
+            navigator.geolocation.getCurrentPosition(position => {
+              console.log('granted user location permission', position );
+                
+              if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(locationHandler);
+              } else {
+                document.getElementById("debug_pos").innerHTML = "GEOLOCATION NOT AVAILABLE"
+              }
+              document.getElementById("debug_pos").innerHTML = "GEOLOCATION IS AVAILABLE"
+
+
+            }, (error) => {
+              // OS services are not enabled
+              console.log('Please turn on OS located services', navigator);
+              errorLocation();
+            }, navigatorLocationOptions);
+
+          } else {
+            // browser issues seriveces
+            console.log('Browser location services disabled', navigator);
+            errorLocation();
+          }
+        }, (error) => {
+          /* Browser doesn't support querying for permissions */
+          console.log('Please turn on BROWSER location services', navigator);
+          errorLocation()
+        }
+      );
     }
 
     function startCompass() {
