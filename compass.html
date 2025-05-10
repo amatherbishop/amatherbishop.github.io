@@ -128,15 +128,25 @@
     }
 
     let pointDegree;
+    let pointDistance;
+    // Qibla geolocation
+    // Pointing to SF
+    const point = {
+        lat: 37.783333,
+        lng: -122.416667,
+      };
 
     function locationHandler(position) {
       const { latitude, longitude } = position.coords;
-      document.getElementById("debug_pos").innerHTML = latitude + "||" + longitude
+
       pointDegree = calcDegreeToPoint(latitude, longitude);
+      pointDistance = calcDistancetoPoint(latitude, longitude);
 
       if (pointDegree < 0) {
         pointDegree = pointDegree + 360;
       }
+
+      document.getElementById("debug_pos").innerHTML = latitude + "||" + longitude + "||" + pointDegree + "||" + pointDistance
     }
 
     function errorHandler(error) {
@@ -144,12 +154,8 @@
     }
 
     function calcDegreeToPoint(latitude, longitude) {
-      // Qibla geolocation
-      // Pointing to SF
-      const point = {
-        lat: 37.783333,
-        lng: -122.416667,
-      };
+
+      
 
       const phiK = (point.lat * Math.PI) / 180.0;
       const lambdaK = (point.lng * Math.PI) / 180.0;
@@ -163,6 +169,21 @@
             Math.sin(phi) * Math.cos(lambdaK - lambda)
         );
       return Math.round(psi);
+    }
+
+    function calcDistancetoPoint(lat, lng) {
+      const R = 6371e3; // metres
+      const phi1 = point.lat * Math.PI/180; // φ, λ in radians
+      const phi2 = lat * Math.PI/180;
+      const dphi = (lat-point.lat) * Math.PI/180;
+      const dlam = (lng-point.lng) * Math.PI/180;
+
+      const a = Math.sin(dphi/2) * Math.sin(dphi/2) +
+                Math.cos(phi1) * Math.cos(phi2) *
+                Math.sin(dlam/2) * Math.sin(dlam/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+      return R * c; // in metres
     }
 
     init();
