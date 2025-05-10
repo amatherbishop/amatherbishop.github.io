@@ -112,11 +112,11 @@
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-angle}deg)`;
 
       // ±15 degree
-      if (Math.abs(pointDegree - Math.abs(compass)) < 15) {
-        myPoint.style.opacity = 0.5;
-      } else if (pointDegree) {
-        myPoint.style.opacity = 1;
-      }
+      // if (Math.abs(pointDegree - Math.abs(compass)) < 15) {
+      //   myPoint.style.opacity = 0.5;
+      // } else if (pointDegree) {
+      //   myPoint.style.opacity = 1;
+      // }
     }
 
     let pointDegree;
@@ -132,9 +132,10 @@
 
     function calcDegreeToPoint(latitude, longitude) {
       // Qibla geolocation
+      // Pointing to SF
       const point = {
-        lat: 21.422487,
-        lng: 39.826206,
+        lat: 37.783333,
+        lng: -122.416667,
       };
 
       const phiK = (point.lat * Math.PI) / 180.0;
