@@ -78,7 +78,7 @@
     <div id='debug'>Hello world!</div>
     <div id='debug_pos'>Ach</div>
     <div id='error'>__</div>
-    <img src="owl.png" class='owl'/>
+    <img src="owl.png" class="owl"/>
   </body>
   <script>
     const compassCircle = document.querySelector(".compass-circle");
@@ -99,7 +99,7 @@
       document.getElementById("debug_pos").innerHTML = "in init"
       startBtn.addEventListener("click", startCompass);
       if ("geolocation" in navigator) {
-        navigator.geolocation.watchPosition(locationHandler, errorHandler, options);
+        navigator.geolocation.watchPosition(locationHandler, errorHandler);
       } else {
         document.getElementById("debug_pos").innerHTML = "GEOLOCATION NOT AVAILABLE"
       }
@@ -158,11 +158,13 @@
       }
 
       if (pointDistance < 125) {
-        op = 125 - pointDistance
+        op = (125 - pointDistance) / 100
         if (op > 100) {
-          op = 100
+          op = 1
         }
         owl.style.opacity = op
+      } else {
+        owl.style.opacity = 0
       }
 
       document.getElementById("debug_pos").innerHTML = latitude + "||" + longitude + "||" + pointDegree + "||" + pointDistance
