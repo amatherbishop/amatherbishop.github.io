@@ -62,6 +62,10 @@
         margin-bottom: auto;
       }
 
+      .owl {
+        opacity: 0;
+      }
+
     </style>
   </head>
   <body>
@@ -74,12 +78,13 @@
     <div id='debug'>Hello world!</div>
     <div id='debug_pos'>Ach</div>
     <div id='error'>__</div>
-    <img src="owl.png"/>
+    <img src="owl.png" class='owl'/>
   </body>
   <script>
     const compassCircle = document.querySelector(".compass-circle");
     const myPoint = document.querySelector(".my-point");
     const startBtn = document.querySelector(".start-btn");
+    const owl = document.querySelector(".owl");
     const isIOS =
       navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
       navigator.userAgent.match(/AppleWebKit/);
@@ -144,6 +149,14 @@
 
       if (pointDegree < 0) {
         pointDegree = pointDegree + 360;
+      }
+
+      if (pointDistance < 125) {
+        op = 125 - pointDistance
+        if (op > 100) {
+          op = 100
+        }
+        owl.style.opacity = op
       }
 
       document.getElementById("debug_pos").innerHTML = latitude + "||" + longitude + "||" + pointDegree + "||" + pointDistance
