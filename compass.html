@@ -72,6 +72,7 @@
     </div>
     <button class="start-btn">Start compass</button>
     <div id='debug'>Hello world!</div>
+    <div id='debug_pos'>Ach</div>
     <img src="owl.png"/>
   </body>
   <script>
@@ -107,7 +108,7 @@
 
     function handler(e) {
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-      document.getElementById("debug").innerHTML = e.webkitCompassHeading + " || " + Math.abs(e.alpha - 360) + "\n" + pointDegree
+      document.getElementById("debug").innerHTML = e.webkitCompassHeading + " ||\t " + Math.abs(e.alpha - 360) + " ||\n" + pointDegree
       angle = compass - pointDegree
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-angle}deg)`;
 
@@ -123,6 +124,7 @@
 
     function locationHandler(position) {
       const { latitude, longitude } = position.coords;
+      document.getElementById("debug_pos").innerHTML = latitude + "||" + longitude
       pointDegree = calcDegreeToPoint(latitude, longitude);
 
       if (pointDegree < 0) {
