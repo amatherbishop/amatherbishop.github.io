@@ -85,7 +85,11 @@
 
     function init() {
       startBtn.addEventListener("click", startCompass);
-      navigator.geolocation.getCurrentPosition(locationHandler);
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(locationHandler);
+      } else {
+        document.getElementById("debug_pos").innerHTML = "GEOLOCATION NOT AVAILABLE"
+      }
 
       if (!isIOS) {
         window.addEventListener("deviceorientationabsolute", handler, true);
