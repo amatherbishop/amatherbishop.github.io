@@ -91,7 +91,7 @@
 
     const options = {
       enableHighAccuracy: true,
-      maximumAge: 30000,
+      maximumAge: 5000,
       timeout: 27000,
     };
 
@@ -99,7 +99,7 @@
       document.getElementById("debug_pos").innerHTML = "in init"
       startBtn.addEventListener("click", startCompass);
       if ("geolocation" in navigator) {
-        navigator.geolocation.watchPosition(locationHandler, errorHandler);
+        navigator.geolocation.watchPosition(locationHandler, errorHandler, options);
       } else {
         document.getElementById("debug_pos").innerHTML = "GEOLOCATION NOT AVAILABLE"
       }
