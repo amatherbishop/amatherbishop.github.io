@@ -43,16 +43,17 @@
       // 5. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
-      var done = false;
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
+        if (event.data == YT.PlayerState.ENDED) {
           btn = document.querySelector(".button");
           btn.style.opacity = 1;
         }
       }
     </script>
+    <div>
     <a href="https://www.amatherbishop.github.io/compass">
         <button class='button'>Click me</button>
     </a>
+    </div>      
   </body>
 </html>
