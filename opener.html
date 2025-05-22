@@ -47,9 +47,8 @@
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
           btn = document.querySelector(".button");
-      }
-      function stopVideo() {
-        player.stopVideo();
+          btn.style.opacity = 1;
+        }
       }
     </script>
     <a href="https://www.amatherbishop.github.io/compass">
