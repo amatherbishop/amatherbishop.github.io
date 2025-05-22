@@ -4,6 +4,11 @@
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
 
+    <style> 
+        .button {
+            opacity: 0;
+        }
+    </style>
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -41,13 +46,14 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
+          btn = document.querySelector(".button");
       }
       function stopVideo() {
         player.stopVideo();
       }
     </script>
+    <a href="https://www.amatherbishop.github.io/compass">
+        <button class='button'>Click me</button>
+    </a>
   </body>
 </html>
