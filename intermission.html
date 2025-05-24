@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <style> 
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .button {
+        opacity: 0;
+        margin-bottom: auto;
+        width: 200px; 
+        height: 50px;
+      }
+  </style>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+
     <div id="player"></div>
 
-    <style> 
-        .button {
-          opacity: 0;
-          margin-bottom: auto;
-          width: 200px; 
-          height: 50px;
-        }
-    </style>
+
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
